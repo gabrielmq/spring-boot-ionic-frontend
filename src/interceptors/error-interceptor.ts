@@ -14,7 +14,7 @@ export class ErrorInterceptor implements HttpInterceptor {
 
         if (!err.status) err = JSON.parse(err);
 
-        console.log(`erro pego pelo interceptor: ${err}`);
+        console.log(`erro pego pelo interceptor: ${err.error}`);
         return Observable.throw(err);
       }) as any;
   }
