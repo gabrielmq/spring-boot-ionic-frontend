@@ -9,17 +9,10 @@ import { StorageService } from '../storage.service';
 @Injectable()
 export class ClienteService {
 
-  constructor(
-    private http: HttpClient,
-    private storage: StorageService
-  ) { }
+  constructor(private http: HttpClient) { }
 
   findByEmail(email: string): Observable<ClienteDTO> {
-    let authHeaders = new HttpHeaders({ 'Authorization': 'Bearer ' + this.storage.getLocalUser().token })
-    return this.http.get<ClienteDTO>(
-      `${apiConfig.baseUrl}/clientes/email?value=${email}`,
-      { 'headers': authHeaders }
-    );
+    return this.http.get<ClienteDTO>(`${apiConfig.baseUrl}/clientes/email?value=${email}`);
   }
 
   getImageFromBucket(id: string): Observable<any> {
