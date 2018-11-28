@@ -20,4 +20,11 @@ export class ClienteService {
       { responseType: 'blob' }
     );
   }
+
+  insert(cliente: ClienteDTO) {
+    return this.http.post(
+      `${apiConfig.baseUrl}/clientes`, cliente,
+      { observe: 'response', responseType: 'text' }
+    );
+  }
 }

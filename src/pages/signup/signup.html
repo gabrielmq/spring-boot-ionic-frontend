@@ -133,7 +133,7 @@
     <ion-item>
       <ion-label stacked>Cidade*</ion-label>
       <ion-select formControlName="cidadeId">
-        <ion-option *ngFor="let cidade of cidades" [value]="cidade.nome">
+        <ion-option *ngFor="let cidade of cidades" [value]="cidade.id">
           {{ cidade.nome }}
         </ion-option>
       </ion-select>
