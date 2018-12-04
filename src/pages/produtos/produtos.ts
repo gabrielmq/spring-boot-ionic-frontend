@@ -25,7 +25,7 @@ export class ProdutosPage {
     this.produtoService
       .findByCategoria(categoriaId)
       .subscribe(res => {
-        this.items = res['content']
+        this.items = res['content'];
         this.loadImageUrls();
       }, 
       err => {} 
@@ -33,19 +33,19 @@ export class ProdutosPage {
   };
 
   loadImageUrls() {
-    for (let i = 0; this.items.length; i++) {
+    for (let i = 0; i < this.items.length; i++) {
       let item = this.items[i];
-
-      this.produtoService
-        .getSmallImageFromBucket(item.id)
-        .subscribe(
-          res => item.imageUrl = `${apiConfig.bucketBaseUrl}/prod${item.id}-small.jpg`,
-          err => {}
-        );
+      console.log(item);
+      this.produtoService.getSmallImageFromBucket(item.id)
+        .subscribe(res => {
+          item.imageUrl = `${apiConfig.bucketBaseUrl}/prod${item.id}-small.jpg`;
+        },
+        err => {}
+      );
     }
   }
 
-  showDetail() {
-    this.navCtrl.push('ProdutoDetailPage');
+  showDetail(produtoId: string) {
+    this.navCtrl.push('ProdutoDetailPage', { produtoId });
   }
 }
