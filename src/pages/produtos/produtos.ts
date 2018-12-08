@@ -21,7 +21,7 @@ export class ProdutosPage {
   ) { }
   
   ionViewDidLoad() {
-    let categoriaId = this.navParams.get('categoriaId'); // pega o parametro da página
+    const categoriaId = this.navParams.get('categoriaId'); // pega o parametro da página
     this.produtoService
       .findByCategoria(categoriaId)
       .subscribe(res => {
@@ -34,8 +34,7 @@ export class ProdutosPage {
 
   loadImageUrls() {
     for (let i = 0; i < this.items.length; i++) {
-      let item = this.items[i];
-      console.log(item);
+      const item = this.items[i];
       this.produtoService.getSmallImageFromBucket(item.id)
         .subscribe(res => {
           item.imageUrl = `${apiConfig.bucketBaseUrl}/prod${item.id}-small.jpg`;

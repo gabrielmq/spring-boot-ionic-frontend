@@ -17,7 +17,7 @@ export class CartService {
 
   getCart() {
     let cart: Cart = this.storage.getCart();
-    if (cart != null) {
+    if (cart === null) {
       cart = this.createOrClearCart();
     }
     
@@ -72,6 +72,7 @@ export class CartService {
       }
     }
 
+    this.total();
     this.storage.setCart(cart);
     return cart;
   }
